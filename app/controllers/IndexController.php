@@ -1,17 +1,16 @@
 <?php
     namespace App\Controllers;
-
+    // recursos do miniframework
     use MF\Controller\Action;
-    use App\Connection;
+    use MF\Model\Container;
+
+    //Models
     use App\Models\Produto;
+    use App\Models\Info;
     class IndexController extends Action{
 
         public function index() {          
-            //instância do PDO
-            $conn = Connection::getDb();
-            //Instanciar modelo  
-                    
-            $produto = new Produto($conn);
+            $produto = Container::getModel('Produto');
             
             $produtos = $produto->getProdutos();
             $this->view->dados = $produtos;
@@ -20,6 +19,10 @@
         }
 
         public function sobreNos() {
+            $info = Container::getModel('Info');
+
+            $informacoes = $info->getInfo();
+            $this->view->dados = $informacoes;
             //$this->view->dados = array('Notebook', 'Smartphone');
             $this->render('sobreNos', 'layout2');
         }        
