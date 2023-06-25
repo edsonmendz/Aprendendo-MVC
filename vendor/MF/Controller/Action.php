@@ -21,11 +21,11 @@ abstract class Action {
     }
 
     protected function content() {
-        $classeAtual = get_class($this);
+        $classAtual = get_class($this);
 
-        $classeAtual = str_replace('App\\Controllers\\', '', $classeAtual);
-        $classeAtual = strtolower(str_replace('Controller', '', $classeAtual ));
+        $classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+        $classAtual = strtolower(str_replace('Controller', '', $classAtual ));
 
-        require_once "../App/views/".$classeAtual."/".$this->view->page.".phtml";
+        require_once "../App/views/".$classAtual."/".$this->view->page.".phtml";
     }
 }
